@@ -45,13 +45,12 @@ function completeOrder(orderId: number) {
     order.status = "completed"
     return order
 }
-
-function getPizzaDetail(identifier: number | string) {
+export function getPizzaDetail(identifier: number | string) {
     if(typeof identifier === "string"){
         return menu.find(pizza => pizza.name.toLocaleLowerCase() === identifier.toLocaleLowerCase())
     }
     else{
-        return menu.find(pizza => pizza.id === identifier)g
+        return menu.find(pizza => pizza.id === identifier)
     }
 }
 
