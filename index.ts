@@ -1,59 +1,47 @@
-interface Pizza {
-    name: string;
-    price: number;
+type Pizza = {
+    name: string,
+    price: number
+}
+const menu = [
+    { name: "Margherita", price: 8 },
+    { name: "Pepperoni", price: 10 },
+    { name: "Hawaiian", price: 10 },
+    { name: "Veggie", price: 9 },
+]
+
+let cashInRegister = 100
+let nextOrderId = 1
+const orderQueue = []
+
+function addNewPizza(pizzaObj: Pizza) {
+    menu.push(pizzaObj)
 }
 
-interface Order {
-    id: number;
-    pizza: Pizza;
-    status: "ordered" | "completed";
-}
-
-export {};
-
-const menu: Pizza[] = [
-    {name: "Margherita Pizza", price: 8.99},
-    {name: "Pepperoni Pizza", price: 9.99},
-    {name: "Veggie Pizza", price: 10.99},
-    {name: "BBQ Chicken Pizza", price: 11.99},
-    {name: "Hawaiian Pizza", price: 12.99}
-];
-
-let cashInRegister = 100;
-const orderQueue: Order[] = [];
-let nextOrderId = 1;
-
-function addNewPizza(pizzaObj: Pizza): void {
-    menu.push(pizzaObj);
-}
-
-function placeOrder(pizzaName: string): Order | undefined {
-    const selectedPizza = menu.find(pizzaObj => pizzaObj.name === pizzaName);
+function placeOrder(pizzaName: string) {
+    const selectedPizza = menu.find(pizzaObj => pizzaObj.name === pizzaName)
     if (!selectedPizza) {
-        console.log(`Pizza "${pizzaName}" not found on menu`);
-        return undefined;
+        console.error(`${pizzaName} does not exist in the menu`)
+        return
     }
-    cashInRegister += selectedPizza.price;
-    const newOrder: Order = {id: nextOrderId++, pizza: selectedPizza, status: "ordered"};
-    orderQueue.push(newOrder);
-    return newOrder;
+    cashInRegister += selectedPizza.price
+    const newOrder = { id: nextOrderId++, pizza: selectedPizza, status: "ordered" }
+    orderQueue.push(newOrder)
+    return newOrder
 }
 
-function completeOrder(orderId: number): Order | undefined {
-    const order = orderQueue.find(order => order.id === orderId);
-    if (order) {
-        order.status = "completed";
-    }
-    return order;
+function completeOrder(orderId: number) {
+    const order = orderQueue.find(order => order.id === orderId)
+    order.status = "completed"
+    return order
 }
 
-addNewPizza({name: "Meat Lovers Pizza", price: 13.99});
-addNewPizza({name: "Buffalo Chicken Pizza", price: 14.99});
-addNewPizza({name: "Supreme Pizza", price: 15.99});
+addNewPizza({ name: "Chicken Bacon Ranch", price: 12 })
+addNewPizza({ name: "BBQ Chicken", price: 12 })
+addNewPizza({ name: "Spicy Sausage", price: 11 })
 
-placeOrder("Meat Lovers Pizza");
-completeOrder(1); // Pass number, not string
+placeOrder("Chicken Bacon Ranch")
+completeOrder(1)
 
-console.log("Menu:", menu);
-console.log("Cash in Register:", cashInRegister);
-console.log("Order Queue:", orderQueue);
+console.log("Menu:", menu)
+console.log("Cash in register:", cashInRegister)
+console.log("Order queue:", orderQueue)
