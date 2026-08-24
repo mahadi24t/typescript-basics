@@ -7,18 +7,13 @@ type person = {
     name: string,
     age: number,
     isStudent:boolean
-    address: Address
+    address?: Address
 }
 
 let person1 = {
     name: "Joe",
     age: 42,
     isStudent: true,
-    address:{
-        street:"123 Main St",
-        city:"New York",
-        country:"USA"
-    }
 }
 
 let person2 = {
@@ -31,3 +26,9 @@ let person2 = {
         country:"USA"
     }
 }
+
+function displayinfo(person: person) {
+    console.log(`${person.name} lives in ${person.address?.street}`)
+}
+
+displayinfo(person2)
