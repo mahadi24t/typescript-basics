@@ -45,7 +45,7 @@ function completeOrder(orderId: number):Order | undefined {
     order.status = "completed"
     return order
 }
-export function getPizzaDetail(identifier: number | string) {
+export function getPizzaDetail(identifier: number | string): Pizza | undefined {
     if(typeof identifier === "string"){
         return menu.find(pizza => pizza.name.toLocaleLowerCase() === identifier.toLocaleLowerCase())
     }
@@ -54,13 +54,15 @@ export function getPizzaDetail(identifier: number | string) {
     }
 }
 
-addNewPizza({id: 5, name: "Chicken Bacon Ranch", price: 12 })
-addNewPizza({ id: 6, name: "BBQ Chicken", price: 12 })
-addNewPizza({id: 7, name: "Spicy Sausage", price: 11 })
 
-placeOrder("Chicken Bacon Ranch")
-completeOrder(1)
 
-console.log("Menu:", menu)
-console.log("Cash in register:", cashInRegister)
-console.log("Order queue:", orderQueue)
+// addNewPizza({id: 5, name: "Chicken Bacon Ranch", price: 12 })
+// addNewPizza({ id: 6, name: "BBQ Chicken", price: 12 })
+// addNewPizza({id: 7, name: "Spicy Sausage", price: 11 })
+
+// placeOrder("Chicken Bacon Ranch")
+// completeOrder(1)
+
+// console.log("Menu:", menu)
+// console.log("Cash in register:", cashInRegister)
+// console.log("Order queue:", orderQueue)
