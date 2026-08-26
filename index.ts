@@ -58,12 +58,27 @@ export function getPizzaDetail(identifier: number | string): Pizza | undefined {
     }
 }
 
+/**
+ * Challenge: add types our generic `addToArray` function. It should work
+ * for adding new pizzas to the `menu` and adding new orders to the `orderQueue`
+ */
 
+function addToArray <T>(array:T[], item:T): T[] {
+    array.push(item)
+    return array
+}
 
-addNewPizza({ name: "Chicken Bacon Ranch", price: 12 })
-addNewPizza({ name: "BBQ Chicken", price: 12 })
-addNewPizza({ name: "Spicy Sausage", price: })
-// placeOrde("Chicken Bacon Ranch")// completeOrder(1)
+// example usage:
+addToArray(menu, {id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 })
+addToArray<Order>(orderQueue, { id: nextOrderId++, pizza: menu[2], status: "completed" })
+
+console.log(menu)
+console.log(orderQueue)
+
+// addNewPizza({ name: "Chicken Bacon Ranch", price: 12 })
+// addNewPizza({ name: "BBQ Chicken", price: 12 })
+// addNewPizza({ name: "Spicy Sausage", price: 12 })
+// placeOrder("Chicken Bacon Ranch")// completeOrder(1)
 
 // console.log("Menu:", menu)
 // console.log("Cash in register:", cashInRegister)
